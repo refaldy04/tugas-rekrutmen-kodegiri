@@ -8,7 +8,7 @@ const Login = () => {
       <Container>
         <Row className="d-flex justify-content-center align-items-center">
           <Col xs="12" md="6" className="bg-light p-3 p-md-5 d-flex flex-column justify-content-center align-items-center rounded">
-            <h1>Administration Report</h1>
+            <h1>Github Jobs</h1>
             <Form />
           </Col>
         </Row>
