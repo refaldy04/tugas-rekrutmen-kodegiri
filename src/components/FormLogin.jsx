@@ -4,6 +4,8 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import http from '../helpers/http';
+import qs from 'qs';
 
 const schema = yup.object().shape({
   email: yup.string().required(),
@@ -14,8 +16,11 @@ export default function FormExample() {
   return (
     <Formik
       validationSchema={schema}
-      onSubmit={(val) => {
+      onSubmit={async (val) => {
         console.log(val);
+        const send = qs.stringify(val);
+        const res = await http().post('login', send);
+        console.log(res);
       }}
       initialValues={{
         email: '',
