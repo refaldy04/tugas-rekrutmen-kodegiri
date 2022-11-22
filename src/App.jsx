@@ -1,30 +1,14 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import Login from './pages/Login';
+import Home from './pages/Home';
 
 function App() {
-  const [count, setCount] = useState(0);
-
+  const token = Cookies.get('token');
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>Increase Count</button>
-        <h1>{count}</h1>
-        <button onClick={() => setCount((count) => count - 1)}>Decrease Count</button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>{token ? <Route path="/" element={<Home />} /> : <Route path="/" element={<Login />} />}</Routes>
+    </BrowserRouter>
   );
 }
 
